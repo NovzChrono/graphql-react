@@ -6,6 +6,8 @@ import {
   CardBody,
   CardFooter,
   Divider,
+  Grid,
+  GridItem,
   Heading,
   Image,
   Spinner,
@@ -41,39 +43,45 @@ export default function List() {
   return (
     <>
       <div>
-        {data.characters.results.map((character) => {
-          <Card maxW="sm">
-            <CardBody>
-              <Image
-                src={character.image}
-                alt="Green double couch with wooden legs"
-                borderRadius="lg"
-              />
-              <Stack mt="6" spacing="3">
-                <Heading size="md">Living room Sofa</Heading>
-                <Text>
-                  This sofa is perfect for modern tropical spaces, baroque
-                  inspired spaces, earthy toned spaces and for people who love a
-                  chic design with a sprinkle of vintage design.
-                </Text>
-                <Text color="blue.600" fontSize="2xl">
-                  $450
-                </Text>
-              </Stack>
-            </CardBody>
-            <Divider />
-            <CardFooter>
-              <ButtonGroup spacing="2">
-                <Button variant="solid" colorScheme="blue">
-                  Buy now
-                </Button>
-                <Button variant="ghost" colorScheme="blue">
-                  Add to cart
-                </Button>
-              </ButtonGroup>
-            </CardFooter>
-          </Card>;
-        })}
+        <Grid templateColumns="repeat(4, 1fr)" gap={2}>
+          {data.characters.results.map((character) => {
+            return (
+              <GridItem key={character.id}>
+                <Card maxW="sm">
+                  <CardBody>
+                    <Image
+                      src={character.image}
+                      alt={character.image}
+                      borderRadius="lg"
+                    />
+                    <Stack mt="6" spacing="3">
+                      <Heading size="md">{character.name}</Heading>
+                      <Text>
+                        This sofa is perfect for modern tropical spaces, baroque
+                        inspired spaces, earthy toned spaces and for people who
+                        love a chic design with a sprinkle of vintage design.
+                      </Text>
+                      <Text color="blue.600" fontSize="2xl">
+                        {character.gender}
+                      </Text>
+                    </Stack>
+                  </CardBody>
+                  <Divider />
+                  <CardFooter>
+                    <ButtonGroup spacing="2">
+                      <Button variant="solid" colorScheme="blue">
+                        Buy now
+                      </Button>
+                      <Button variant="ghost" colorScheme="blue">
+                        Add to cart
+                      </Button>
+                    </ButtonGroup>
+                  </CardFooter>
+                </Card>
+              </GridItem>
+            );
+          })}
+        </Grid>
       </div>
     </>
   );
